@@ -22,7 +22,12 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
                 archivo.write(f"{interes} <={capacity}* y"+a+"\n")
             a+=1
             #Horarios restringidos
-        for 
+        for a in range(0, len(atributos[h_restringidos]):
+            for h in range(0, len(atributos[h_restringidos][a]):
+                for s in range(0, len(atributos[cap_salas]):
+                    archivo.write(f"x{a}_{s}_{h}=0\n")
+            
+                
         archivo.write("END")
         
 flag=True
