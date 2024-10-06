@@ -5,11 +5,15 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
         atributos = vars(instancia)  # Obtener todos los atributos de la instancia como un diccionario
         #Crear Función Objetivo
         a=0
+        f_o=""
         archivo.write("MAXIMIZE\n")
         archivo.write("obj: ")
         for p_a in atributo[prioridad]):
-            archivo.write(f"{p_a} * y"+a+"+")
+            f_o+=f"{p_a} * y"+a+"+"
+            
+            archivo.write()
             a+=1
+        
         #Crear restricciones
             #Interes
         archivo.write("SUBJECT TO\n")
