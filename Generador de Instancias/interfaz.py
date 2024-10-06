@@ -17,7 +17,8 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
             for capacity in atributos[cap_salas]:
                 archivo.write(f"{interes} <={capacity}* y"+a+"\n")
             a+=1
-        
+            #Horarios restringidos
+        for 
         archivo.write("END")
         
 flag=True
