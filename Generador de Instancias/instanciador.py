@@ -8,7 +8,7 @@ class Instancia:
         self.h_restringidos=f_horarios_restringidos(num_asig)
         self.cap_salas=f_cap_salas(num_salas)
         self.q_alumnos=f_q_alumnos(num_asig)
-        self.asig_2bloques=dar2bloquesalsesentaycincoporciento(num_asig)
+        self.asig_bloques=asig_bloques(num_asig)
         
 
 #Prioridad de asignatura
