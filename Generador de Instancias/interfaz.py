@@ -29,6 +29,16 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
                     archivo.write(f"x{a}_{s}_{h}=0\n")
             
             #Bloques horarios consecutivos
+        sum=""
+          for a in range(1, len(len(atributos[prioridad]+1):
+            for h in range(1, len(atributos[h_restringidos][a]+1):
+                for s in range(1, len(atributos[cap_salas]+1):
+                     sum+=f"x{a}_{s}_{h}+x{a}_{s}_{h+1} "
+                if a in atributos[asig_bloques]
+                     sum=sum[:-1]+"=2;"
+                else:
+                     sum=sum[:-1]+"=1;"
+                archivo.write(sum)
             #Asignación de bloques
         sum=""
           for a in range(1, len(len(atributos[prioridad]+1):
