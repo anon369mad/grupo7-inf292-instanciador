@@ -1,5 +1,8 @@
 from instanciador import instanciacion, Instancia
 
+num_asignaturas=int(input("Ingrese la cantidad de Asignaturas (el valor debe estar entre los intervalos propuestos): "))
+num_salas=int(input("Ingrese la cantidad de salas (el valor debe estar en el intervalo propuesto): "))
+
 def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
     with open(nombre_archivo, "w") as archivo:
         atributos = vars(instancia)  # Obtener todos los atributos de la instancia como un diccionario
