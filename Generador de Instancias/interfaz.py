@@ -10,9 +10,10 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
         archivo.write("obj: ")
         for p_a in atributo[prioridad]):
             f_o+=f"{p_a} * y"+a+"+"
-            
-            archivo.write()
             a+=1
+        f_o = f_o[:-1] + f_o[-1].replace("+", ";")
+        archivo.write(f_o)
+           
         
         #Crear restricciones
             #Interes
@@ -23,6 +24,18 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
             a+=1
             #Horarios restringidos
         for 
+            #Bloques horarios consecutivos
+            #Asignación de bloques
+            #Disponibilidad asignatura
+            #Activación
+            #Tope de horario
+            #Asignaturas Indispensables
+        x=0
+        for p_a in asignatura[prioridad]:
+            if p_a>5: 
+                archivo.write(f"y{x}=1\n")
+            x+=1       
+            #Horarios Profesores
         archivo.write("END")
         
 flag=True
