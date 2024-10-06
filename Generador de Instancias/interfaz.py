@@ -37,6 +37,8 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
                      sum+=f"x{a}_{s}_{h}+"
                 if a in atributos[asig_bloques]
                      sum=sum[:-1]+"=2;"
+                else:
+                     sum=sum[:-1]+"=1;"
                 archivo.write(sum)
                     
             #Disponibilidad asignatura
