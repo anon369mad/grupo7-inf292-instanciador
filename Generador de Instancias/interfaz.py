@@ -3,8 +3,11 @@ from instanciador import instanciacion, Instancia
 def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
     with open(nombre_archivo, "w") as archivo:
         atributos = vars(instancia)  # Obtener todos los atributos de la instancia como un diccionario
-        for atributo, valor in atributos.items():
-            archivo.write(f"{atributo}: {valor}\n")
+        #Crear Función Objetivo
+        a=0
+        for p_a in atributo[prioridad]):
+            archivo.write(f"{p_a} y",a,"+")
+            a+=1
 flag=True
 while flag:
  print("Elija una opción:")
