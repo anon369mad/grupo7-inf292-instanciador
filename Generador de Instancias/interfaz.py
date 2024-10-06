@@ -33,7 +33,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
             for h in range(1, len(atributos["h_restringidos"][a - 1]) + 1):
                 for s in range(1, len(atributos["cap_salas"]) + 1):
                     sum += f"x{a}_{s}_{h} + x{a}_{s}_{h + 1} + "
-            if a in atributos["asig_2bloques"]:
+            if a in atributos["asig_bloques"]:
                 sum = sum[:-1] + sum[-1].replace("+", "=2;\n")
             else:
                 sum = sum[:-1] + sum[-1].replace("+", "=1;\n")
@@ -45,7 +45,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
             for h in range(1, len(atributos["h_restringidos"][a - 1]) + 1):
                 for s in range(1, len(atributos["cap_salas"]) + 1):
                     sum += f"x{a}_{s}_{h} + "
-            if a in atributos["asig_2bloques"]:
+            if a in atributos["asig_bloques"]:
                 sum = sum[:-1] + sum[-1].replace("+", "=2;\n")
             else:
                 sum = sum[:-1] + sum[-1].replace("+", "=1;\n")
