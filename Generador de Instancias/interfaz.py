@@ -20,7 +20,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
         archivo.write("SUBJECT TO\n")
         for interes in atributos[q_alumnos]:
             for capacity in atributos[cap_salas]:
-                archivo.write(f"{interes} <={capacity}* y"+a+"\n")
+                archivo.write(f"{interes} <={capacity}* y"+a+";\n")
             a+=1
             #Horarios restringidos
         for 
@@ -33,7 +33,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
         x=0
         for p_a in asignatura[prioridad]:
             if p_a>5: 
-                archivo.write(f"y{x}=1\n")
+                archivo.write(f"y{x}=1;\n")
             x+=1       
             #Horarios Profesores
         archivo.write("END")
