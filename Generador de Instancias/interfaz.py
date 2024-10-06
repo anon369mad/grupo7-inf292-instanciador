@@ -23,16 +23,24 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
                 archivo.write(f"{interes} <={capacity}* y"+a+";\n")
             a+=1
             #Horarios restrigidos
-        for a in range(0, len(atributos[h_restringidos]):
-            for h in range(0, len(atributos[h_restringidos][a]):
-                for s in range(0, len(atributos[cap_salas]):
+        for a in range(1, len(atributos[h_restringidos]+1):
+            for h in range(1, len(atributos[h_restringidos][a]+1):
+                for s in range(1, len(atributos[cap_salas]+1):
                     archivo.write(f"x{a}_{s}_{h}=0\n")
             
             #Bloques horarios consecutivos
             #Asignación de bloques
             #Disponibilidad asignatura
             #Activación
+        
             #Tope de horario
+        sum=""
+        for s in range(1,len(atributos[cap_salas]+1)
+            for h in range(1,36))
+                for a in range(1,len(atributos[prioridad]+1):
+                    sum+=f"x{a}_{s}_{h}+"
+                sum=sum[:-1]+"<=1;"
+                archivo.write(sum)
             #Asignaturas Indispensables
         x=0
         for p_a in asignatura[prioridad]:
