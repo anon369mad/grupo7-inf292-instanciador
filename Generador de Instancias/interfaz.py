@@ -13,7 +13,6 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
             a+=1
         f_o = f_o[:-1] + f_o[-1].replace("+", ";")
         archivo.write(f_o)
-           
         
         #Crear restricciones
             #Interes
@@ -22,11 +21,11 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
             for capacity in atributos[cap_salas]:
                 archivo.write(f"{interes} <={capacity}* y"+a+";\n")
             a+=1
-            #Horarios restrigidos
+        #Horarios restrigidos
         for a in range(1, len(atributos[h_restringidos]+1):
             for h in range(1, len(atributos[h_restringidos][a]+1):
                 for s in range(1, len(atributos[cap_salas]+1):
-                    archivo.write(f"x{a}_{s}_{h}=0\n")
+                    archivo.write(f"x{a}_{s}_{h}=0;\n")
             
             #Bloques horarios consecutivos
         sum=""
@@ -52,23 +51,30 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
                 archivo.write(sum)
                     
             #Disponibilidad asignatura
-            #Activación
         
-            #Tope de horario
-        sum=""
+        #Activación
+        for a in range(1,len(atributos[prioridad]+1):
+            sum=""
+            for s in range(1,len(atributos[cap_salas]+1)
+                for h in range(1,36))
+                    sum+=f"x{a}_{s}_{h}+"
+            sum=f"y{a}<="sum[:-1]+";"
+            archivo.write(sum)
+                
+        #Tope de horario
         for s in range(1,len(atributos[cap_salas]+1)
             for h in range(1,36))
+                sum=""
                 for a in range(1,len(atributos[prioridad]+1):
                     sum+=f"x{a}_{s}_{h}+"
                 sum=sum[:-1]+"<=1;"
                 archivo.write(sum)
-            #Asignaturas Indispensables
+        #Asignaturas Indispensables
         x=0
         for p_a in asignatura[prioridad]:
             if p_a>5: 
                 archivo.write(f"y{x}=1;\n")
-            x+=1       
-            #Horarios Profesores
+            x+=1
                                
         archivo.write("END")
         
