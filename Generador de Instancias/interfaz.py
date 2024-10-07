@@ -4,10 +4,9 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
     with open(nombre_archivo, "w") as archivo:
         atributos = vars(instancia)  # Obtener todos los atributos de la instancia como un diccionario
         # Crear Función Objetivo
-        a = 0
+        a = 1
         f_o = ""
-        archivo.write("MAXIMIZE\n")
-        archivo.write("obj: ")
+        archivo.write("max: ")
         for p_a in atributos["prioridad"]:
             f_o += f"{p_a} * y{a}+"
             a += 1
@@ -16,8 +15,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
 
         # Crear restricciones
         # Interes
-        a = 0
-        archivo.write("SUBJECT TO\n")
+        a = 1
         archivo.write("\\\Interes\n")
         for interes in atributos["q_alumnos"]:
             for capacity in atributos["cap_salas"]:
@@ -95,8 +93,27 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
                 for s in range(1, len(atributos["cap_salas"]) + 1):
                     archivo.write(f"x{a}_{s}_{h} = 0;\n")
                     
-        archivo.write("END")
+        s = ""  # String vacío para almacenar el resultado
+        archivo.write("bin ")  # Escribe el encabezado 'bin'
 
+        # Recorremos la lista de prioridades y capacidades de salas
+        for a in range(1, len(atributos["prioridad"]) + 1):
+            for sala in range(1, len(atributos["cap_salas"]) + 1):
+                for h in range(1, 36):  # Horarios del 1 al 35
+                    s += f"x{a}_{sala}_{h}, "  # Concatenamos cada variable binaria
+
+        # Eliminamos el último ', ' sobrante
+        s = s[:-2]
+        archivo.write(s + ", ")  # Escribimos las variables binarias con ';\n' para finalizar
+
+        # Reiniciamos el string para las variables y
+        s = ""
+        for a in range(1, len(atributos["prioridad"]) + 1):
+            s += f"y{a}, "  # Concatenamos las variables 'y'
+
+        # Eliminamos el último ', ' sobrante
+        s = s[:-2]
+        archivo.write(s + ";\n")  # Escribimos las variables 'y' con ';\n'
         
 flag=True
 while flag:
