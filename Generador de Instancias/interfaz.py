@@ -89,7 +89,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
         # Horarios restringidos
         archivo.write("\\\Horarios restringidos\n")
         for a in range(0, len(atributos["h_restringidos"])):
-            for h in range(1, atributos["h_restringidos"][a]):
+            for h in atributos["h_restringidos"][a]:
                 for s in range(1, len(atributos["cap_salas"]) + 1):
                     archivo.write(f"x{a}_{s}_{h} = 0;\n")
                     
