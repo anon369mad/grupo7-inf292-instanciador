@@ -43,7 +43,7 @@ def f_horarios_restringidos(num_asig, h_disponibles):
     h_restringidos_todos=[]
     for i in range(0, num_asig):
         qh_restringidos_profe=random.randint(7, 21)
-        h_restringidos_profe = sorted(h_disponibles, k=qh_restringidos_profe))
+        h_restringidos_profe = sorted(h_disponibles, k=h_restringidos_profe))
         h_restringidos_todos.append(h_restringidos_profe)
     return h_restringidos_todos
 
