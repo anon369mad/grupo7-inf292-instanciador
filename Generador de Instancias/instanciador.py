@@ -8,7 +8,7 @@ class Instancia:
         self.h_restringidos=f_horarios_restringidos(num_asig)
         self.cap_salas=f_cap_salas(num_salas)
         self.q_alumnos=f_q_alumnos(num_asig)
-        self.asig_2bloques=dar2bloquesalsesentaycincoporciento(num_asig)
+        self.asig_bloques=asig_bloques(num_asig)
         self.h_disponibles=f_h_disponibles()
         
 
@@ -53,7 +53,7 @@ def f_q_alumnos(num_asig):
     return [random.randint(40, 80) for i in range(num_asig)]
 
 #Retorna un array con los subindices-a (asignaturas) que tienen 2 bloques
-def dar2bloquesalsesentaycincoporciento(num_asig):
+def asig_bloques(num_asig):
     return sorted(random.sample(range(0, num_asig), k=int(num_asig*0.65)))
     
 def f_h_disponibles():
