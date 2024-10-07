@@ -82,8 +82,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
 flag=True
 while flag:
  print("Elija una opción:")
- print("1-Generar instancia pequeña")
- print("2-Generar 5 instancias medianas y 5 grandes")
+ print("1-Generar instancia")
  print("0-Salir")
  opcion=int(input())
  
