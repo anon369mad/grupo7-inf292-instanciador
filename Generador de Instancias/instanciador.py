@@ -5,11 +5,12 @@ import random
 class Instancia:
     def __init__(self, num_asig, num_salas):
         self.prioridad=f_prioridad(num_asig)
-        self.h_restringidos=f_horarios_restringidos(num_asig)
+        self.h_disponibles=f_h_disponibles()
+        self.h_restringidos=f_horarios_restringidos(num_asig, self.h_disponibles)
         self.cap_salas=f_cap_salas(num_salas)
         self.q_alumnos=f_q_alumnos(num_asig)
-        self.asig_bloques=asig_bloques(num_asig)
-        self.h_disponibles=f_h_disponibles()
+        self.asig_bloques=dar2bloquesalsesentaycincoporciento(num_asig)
+        
         
 
 #Prioridad de asignatura
@@ -38,11 +39,11 @@ def f_prioridad(num_asignaturas):
     return lista_prioridades
 
 #Retorna un array con arrays de los subindices-h (horarios) para subindices-a (asignaturas), en donde las asignaturas no pueden ser impartidas
-def f_horarios_restringidos(num_asig):
+def f_horarios_restringidos(num_asig, h_disponibles):
     h_restringidos_todos=[]
     for i in range(0, num_asig):
         qh_restringidos_profe=random.randint(7, 21)
-        h_restringidos_profe = sorted(random.sample(range(0, 35), k=qh_restringidos_profe))
+        h_restringidos_profe = sorted(h_disponibles, k=qh_restringidos_profe))
         h_restringidos_todos.append(h_restringidos_profe)
     return h_restringidos_todos
 
@@ -53,7 +54,7 @@ def f_q_alumnos(num_asig):
     return [random.randint(40, 80) for i in range(num_asig)]
 
 #Retorna un array con los subindices-a (asignaturas) que tienen 2 bloques
-def asig_bloques(num_asig):
+def dar2bloquesalsesentaycincoporciento(num_asig):
     return sorted(random.sample(range(0, num_asig), k=int(num_asig*0.65)))
     
 def f_h_disponibles():
