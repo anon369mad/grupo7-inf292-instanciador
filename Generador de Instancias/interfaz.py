@@ -18,33 +18,31 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
         # Interes
         a = 0
         archivo.write("SUBJECT TO\n")
-        archivo.write("\\Interes\n")
+        archivo.write("\\\Interes\n")
         for interes in atributos["q_alumnos"]:
             for capacity in atributos["cap_salas"]:
                 archivo.write(f"{interes} <= {capacity} * y{a};\n")
             a += 1
         # Horarios restringidos
-        archivo.write("\\Horarios restringidos\n")
+        archivo.write("\\\Horarios restringidos\n")
         for a in range(1, len(atributos["h_restringidos"]) + 1):
             for h in range(1, len(atributos["h_restringidos"][a - 1]) + 1):
                 for s in range(1, len(atributos["cap_salas"]) + 1):
                     archivo.write(f"x{a}_{s}_{h} = 0;\n")
 
         # Bloques horarios consecutivos
-        archivo.write("\\Bloques horarios consecutivos\n")
         sum = ""
         for a in range(1, len(atributos["prioridad"]) + 1):
             for h in range(1, len(atributos["h_restringidos"][a - 1]) + 1):
                 for s in range(1, len(atributos["cap_salas"]) + 1):
-                    sum += f"x{a}_{s}_{h} + x{a}_{s}_{h + 1} + "
-            if a in atributos["asig_bloques"]:
-                sum = sum[:-1] + sum[-1].replace("+", "=2;\n")
-            else:
-                sum = sum[:-1] + sum[-1].replace("+", "=1;\n")
-            archivo.write(sum)
+                    if a in atributos["asig_bloques"]:
+                        sum =f"x{a}_{s}_{h}+x{a}_{s}_{h+1}=2;\n" 
+                    else:
+                        sum =f"x{a}_{s}_{h}+x{a}_{s}_{h+1}=1;\n"
+                   archivo.write(sum)
 
         # Asignación de bloques
-        archivo.write("\\Asignación de bloques\n")
+        archivo.write("\\\Asignación de bloques\n")
         sum = ""
         for a in range(1, len(atributos["prioridad"]) + 1):
             for h in range(1, len(atributos["h_restringidos"][a - 1]) + 1):
@@ -57,7 +55,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
             archivo.write(sum)
 
         # Disponibilidad asignatura y Activación
-        archivo.write("\\Disponibilidad asignatura y Activación\n")
+        archivo.write("\\\Disponibilidad asignatura y Activación\n")
         for a in range(1, len(atributos["prioridad"]) + 1):
             sum = ""
             for s in range(1, len(atributos["cap_salas"]) + 1):
@@ -67,7 +65,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
             archivo.write(sum)
 
         # Tope de horario
-        archivo.write("\\Tope de horario\n")
+        archivo.write("\\\Tope de horario\n")
         for s in range(1, len(atributos["cap_salas"]) + 1):
             for h in range(1, 36):
                 sum = ""
@@ -77,7 +75,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
                 archivo.write(sum)
 
         # Asignaturas Indispensables
-        archivo.write("\\Asignaturas Indispensables\n")
+        archivo.write("\\\Asignaturas Indispensables\n")
         x = 0
         for p_a in atributos["prioridad"]:
             if p_a > 5:
