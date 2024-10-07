@@ -43,17 +43,28 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
                     archivo.write(sum)
 
         # Asignación de bloques
-        archivo.write("\\\Asignación de bloques\n")
-        sum = ""
+        archivo.write("\\Asignación de bloques\n")
+
+# Iterar sobre las asignaturas
         for a in range(1, len(atributos["prioridad"]) + 1):
-            for h in range(1, len(atributos["h_restringidos"][a - 1]) + 1):
+            sum_term = ""  # Inicializa la suma para cada asignatura
+            
+            # Iterar sobre los horarios restringidos
+            for h in range(1, 36):
+                
+                # Iterar sobre las salas
                 for s in range(1, len(atributos["cap_salas"]) + 1):
-                    sum += f"x{a}_{s}_{h} + "
+                    sum_term += f"x{a}_{s}_{h} + "
+            
+            # Elimina el último "+" y añade la ecuación correcta
+            sum_term = sum_term[:-3]  # Elimina el último " + "
+            
             if a in atributos["asig_bloques"]:
-                sum = sum[:-1] + sum[-1].replace("+", "=2;\n")
+                sum_term += f" = 2;\n"
             else:
-                sum = sum[:-1] + sum[-1].replace("+", "=1;\n")
-            archivo.write(sum)
+                sum_term += " = 1;\n"
+            
+            archivo.write(sum_term)  # Escribe la ecuación en el archivo
 
         # Disponibilidad asignatura y Activación
         archivo.write("\\\Disponibilidad asignatura y Activación\n")
