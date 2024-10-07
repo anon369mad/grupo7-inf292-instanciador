@@ -91,7 +91,14 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
         for a in range(0, len(atributos["h_restringidos"])):
             for h in atributos["h_restringidos"][a]:
                 for s in range(1, len(atributos["cap_salas"]) + 1):
-                    archivo.write(f"x{a}_{s}_{h} = 0;\n")
+                    archivo.write(f"x{a+1}_{s}_{h} = 0;\n")
+        
+        # Horarios disponible
+        archivo.write("\\\Horarios Disponible\n")
+        for a in range(0, len(atributos["h_restringidos"])):
+            for h in atributos["h_disponibles"][a]:
+                for s in range(1, len(atributos["cap_salas"]) + 1):
+                    archivo.write(f"x{a+1}_{s}_{h} <= 1;\n")
                     
         s = ""  # String vacío para almacenar el resultado
         archivo.write("bin ")  # Escribe el encabezado 'bin'
