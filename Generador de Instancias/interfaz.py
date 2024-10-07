@@ -31,6 +31,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
                     archivo.write(f"x{a}_{s}_{h} = 0;\n")
 
         # Bloques horarios consecutivos
+        archivo.write("\\\Bloques horarios consecutivos\n")
         sum = ""
         for a in range(1, len(atributos["prioridad"]) + 1):
             for h in range(1, len(atributos["h_restringidos"][a - 1]) + 1):
@@ -39,7 +40,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
                         sum =f"x{a}_{s}_{h}+x{a}_{s}_{h+1}=2;\n" 
                     else:
                         sum =f"x{a}_{s}_{h}+x{a}_{s}_{h+1}=1;\n"
-                   archivo.write(sum)
+                    archivo.write(sum)
 
         # Asignación de bloques
         archivo.write("\\\Asignación de bloques\n")
