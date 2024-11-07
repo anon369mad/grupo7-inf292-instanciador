@@ -4,6 +4,8 @@ import random
 
 class Instancia:
     def __init__(self, num_asig, num_salas):
+        self.num_asig=num_asig
+        self.num_salas=num_salas
         self.prioridad=f_prioridad(num_asig)
         self.h_disponibles=f_h_disponibles()
         self.h_restringidos=f_horarios_restringidos(num_asig, self.h_disponibles)
@@ -58,7 +60,7 @@ def dar2bloquesalsesentaycincoporciento(num_asig):
     return sorted(random.sample(range(0, num_asig), k=int(num_asig*0.65)))
     
 def f_h_disponibles():
-    return sorted(random.sample(range(0, 70), k=35))import random
+    return sorted(random.sample(range(0, 70), k=35))
 #instancia pequeña: 1 sala 
 #identificar cuántas asignaturas son necesarias para que la solución se vuelva infactible;  necesario generar al menos 5 instancias y analizar los resultados obtenidos.
 
