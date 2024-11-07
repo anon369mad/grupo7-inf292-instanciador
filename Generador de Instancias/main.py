@@ -3,13 +3,13 @@ import restricciones as req
 
 def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
     with open(nombre_archivo, "w") as archivo:
-        archivo.write(restricciones.crear_funcion_objetivo(instancia.prioridad, instancia.num_asig))
-        archivo.write(restricciones.crear_restriccion_interes(instancia.q_alumnos, instancia.cap_salas, instancia.num_asig))
-        archivo.write(restricciones.crear_bloques_horarios_consecutivos(instancia.prioridad, instancia.h_restringidos, instancia.cap_salas, instancia.asig_bloques, instancia.num_asig, instancia.num_salas))
-        archivo.write(restricciones.crear_asignacion_bloques(instancia.prioridad, instancia.cap_salas, instancia.asig_bloques, instancia.num_asig, instancia.num_salas))
-        archivo.write(restricciones.crear_disponibilidad_asignatura(instancia.prioridad, instancia.cap_salas, instancia.num_asig, instancia.num_salas))
-        archivo.write(restricciones.crear_tope_horario(instancia.prioridad, instancia.cap_salas, instancia.num_asig, instancia.num_salas))
-        archivo.write(restricciones.crear_asignaturas_indispensables(instancia.prioridad, instancia.num_asig))
+        archivo.write(req.crear_funcion_objetivo(instancia.prioridad, instancia.num_asig))
+        archivo.write(req.crear_restriccion_interes(instancia.q_alumnos, instancia.cap_salas, instancia.num_asig))
+        archivo.write(req.crear_bloques_horarios_consecutivos(instancia.prioridad, instancia.h_restringidos, instancia.cap_salas, instancia.asig_bloques, instancia.num_asig, instancia.num_salas))
+        archivo.write(req.crear_asignacion_bloques(instancia.prioridad, instancia.cap_salas, instancia.asig_bloques, instancia.num_asig, instancia.num_salas))
+        archivo.write(req.crear_disponibilidad_asignatura(instancia.prioridad, instancia.cap_salas, instancia.num_asig, instancia.num_salas))
+        archivo.write(req.crear_tope_horario(instancia.prioridad, instancia.cap_salas, instancia.num_asig, instancia.num_salas))
+        archivo.write(req.crear_asignaturas_indispensables(instancia.prioridad, instancia.num_asig))
 
         # Horarios restringidos
         archivo.write("\\Horarios restringidos\n")
