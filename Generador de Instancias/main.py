@@ -7,7 +7,8 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
         archivo.write(req.crear_restriccion_interes(instancia.q_alumnos, instancia.cap_salas, instancia.num_asig, instancia.num_salas))
         archivo.write(req.crear_bloques_horarios_consecutivos(instancia.prioridad, instancia.h_restringidos, instancia.cap_salas, instancia.asig_bloques, instancia.num_asig, instancia.num_salas))
         archivo.write(req.crear_asignacion_bloques(instancia.prioridad, instancia.cap_salas, instancia.asig_bloques, instancia.num_asig, instancia.num_salas))
-        archivo.write(req.crear_disponibilidad_asignatura(instancia.prioridad, instancia.cap_salas, instancia.num_asig, instancia.num_salas))
+        archivo.write(req.crear_disponibilidad(instancia.h_disponibles, instancia.num_asig, instancia.num_salas))
+        archivo.write(req.activacion(instancia.prioridad, instancia.cap_salas, instancia.num_asig, instancia.num_salas))
         archivo.write(req.crear_tope_horario(instancia.num_asig, instancia.num_salas))
         archivo.write(req.crear_asignaturas_indispensables(instancia.prioridad, instancia.num_asig))
 
@@ -60,6 +61,6 @@ while flag:
 '''
 
 if True:
- instancia=Instancia(1, 1)
+ instancia=Instancia(10, 10)
  guardar_atributos_en_txt(instancia, "InstanciaP.lp")
  print("Archivos con instancias creados")

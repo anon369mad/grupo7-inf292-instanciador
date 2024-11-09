@@ -12,7 +12,7 @@ def crear_restriccion_interes(q_alumnos, cap_salas, num_asignaturas=1, num_salas
         for s, capacity in enumerate(cap_salas):
             sum_expr = ""
             for h in range(1, 71):
-                sum_expr += f"{q_alumnos[a-1]} x{a}_{s}_{h}"
+                sum_expr += f"x{a}_{s}_{h}"
                 sum_expr += " + " if h < 70 else f" <= {capacity};\n"
             restriccion += sum_expr
     return restriccion
@@ -25,7 +25,7 @@ def crear_bloques_horarios_consecutivos(prioridad, h_restringidos, cap_salas, as
                 if a in asig_bloques:
                     sum_expr = f"x{a}_{s}_{h-1}+x{a}_{s}_{h+1}+x{a}_{s}_{h}="
                     sum_expr += f"2*x{a}_{s}_{h};\n" 
-                restriccion += sum_expr
+                    restriccion += sum_expr
     return restriccion
 
 def crear_asignacion_bloques(prioridad, cap_salas, asig_bloques, num_asignaturas=1, num_salas=1):
@@ -39,11 +39,24 @@ def crear_asignacion_bloques(prioridad, cap_salas, asig_bloques, num_asignaturas
         restriccion += sum_term
     return restriccion
 
-def crear_disponibilidad_asignatura(prioridad, cap_salas, num_asignaturas=1, num_salas=1):
-    restriccion = "/* R4 - Disponibilidad asignatura y Activación */\n"
+def activacion(prioridad, cap_salas, num_asignaturas=1, num_salas=1, ):
+    restriccion = "/* R5 - Activación */\n"
     for a in range(1, num_asignaturas + 1):
         sum_term = " + ".join(f"x{a}_{s}_{h}" for s in range(1, num_salas + 1) for h in range(1, 36))
         restriccion += f"y{a} <= {sum_term};\n"
+    return restriccion
+
+def crear_disponibilidad(h_disponibles, num_asignaturas=1, num_salas=1):
+    restriccion = "/* R4 - Disponibilidad asignatura */\n"
+    for h in h_disponibles:
+        for a in range(1,num_asignaturas+1):
+            for s in range(1,num_salas+1):
+                restriccion+=f"x{a}_{s}_{h} <= 1;\n" 
+    for h in range(1,71):
+        for a in range(1,num_asignaturas+1):
+            for s in range(1,num_salas+1):
+                if h not in h_disponibles:
+                   restriccion+=f"x{a}_{s}_{h} <= 0;\n"   
     return restriccion
 
 def crear_tope_horario(num_asignaturas=1, num_salas=1):
