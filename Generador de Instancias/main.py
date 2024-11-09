@@ -26,9 +26,10 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
             for h in horarios:
                 for s in range(1, len(instancia.cap_salas) + 1):
                     archivo.write(f"x{a+1}_{s}_{h} <= 1;\n")
+        '''
 
         # Variables binarias
-        archivo.write("\\bin\n")
+        archivo.write("bin\n")
         s = ", ".join(f"x{a}_{sala}_{h}" for a in range(1, len(instancia.prioridad) + 1)
                       for sala in range(1, len(instancia.cap_salas) + 1) for h in range(1, 36))
         archivo.write(s + ", ")
@@ -36,7 +37,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
         # Variables y
         s = ", ".join(f"y{a}" for a in range(1, len(instancia.prioridad) + 1))
         archivo.write(s + ";\n")
-        '''
+        
 
 '''     
 flag=True
@@ -61,6 +62,6 @@ while flag:
 '''
 
 if True:
- instancia=Instancia(10, 10)
+ instancia=Instancia(40, 1)
  guardar_atributos_en_txt(instancia, "InstanciaP.lp")
  print("Archivos con instancias creados")
