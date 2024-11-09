@@ -35,7 +35,8 @@ def crear_asignacion_bloques(prioridad, cap_salas, asig_bloques, num_asignaturas
         for h in range(1, 36):
             for s in range(1, num_salas + 1):
                 sum_term += f"x{a}_{s}_{h} + "
-        sum_term = sum_term[:-3] + " = " + ("2;\n" if a in asig_bloques else "1;\n")
+        sum_term = sum_term[:-3] + " = " + ("2" if a in asig_bloques else "1")
+        sum_term = sum_term+f" y_{a};\n"
         restriccion += sum_term
     return restriccion
 
