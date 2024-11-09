@@ -22,8 +22,9 @@ def crear_bloques_horarios_consecutivos(prioridad, h_restringidos, cap_salas, as
     for a in range(1, num_asignaturas + 1):
         for h in range(1, len(h_restringidos[a - 1]) + 1):
             for s in range(1, num_salas + 1):
-                sum_expr = f"x{a}_{s}_{h}+x{a}_{s}_{h+1}="
-                sum_expr += "2;\n" if a in asig_bloques else "1;\n"
+                if a in asig_bloques:
+                    sum_expr = f"x{a}_{s}_{h-1}+x{a}_{s}_{h+1}+x{a}_{s}_{h}="
+                    sum_expr += f"2*x{a}_{s}_{h};\n" 
                 restriccion += sum_expr
     return restriccion
 
