@@ -31,7 +31,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
         # Variables binarias
         archivo.write("bin\n")
         s = ", ".join(f"x{a}_{sala}_{h}" for a in range(1, len(instancia.prioridad) + 1)
-                      for sala in range(1, len(instancia.cap_salas) + 1) for h in range(1, 71))
+                      for sala in range(1, len(instancia.cap_salas) + 1) for h in range(1, 36))
         archivo.write(s + ", ")
 
         # Variables y
@@ -62,6 +62,6 @@ while flag:
 '''
 
 if True:
- instancia=Instancia(45, 1)#asig,salas
- guardar_atributos_en_txt(instancia, "InstanciaP.lp")
+ instancia=Instancia(23, 1)#asig,salas
+ guardar_atributos_en_txt(instancia, "Instancia_22-1.lp")
  print("Archivos con instancias creados")

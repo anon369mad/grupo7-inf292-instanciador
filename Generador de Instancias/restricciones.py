@@ -29,7 +29,7 @@ def crear_asignacion_bloques(prioridad, cap_salas, asig_bloques, num_asignaturas
     restriccion = "/* R3 - Asignación de bloques */\n"
     for a in range(1, num_asignaturas + 1):
         sum_term = ""
-        for h in range(1, 71):
+        for h in range(1, 36):
             for s in range(1, num_salas + 1):
                 sum_term += f"x{a}_{s}_{h} + "
         sum_term = sum_term[:-3] + " = " + ("2;\n" if a in asig_bloques else "1;\n")
@@ -39,7 +39,7 @@ def crear_asignacion_bloques(prioridad, cap_salas, asig_bloques, num_asignaturas
 def activacion(prioridad, cap_salas, num_asignaturas=1, num_salas=1, ):
     restriccion = "/* R5 - Activación */\n"
     for a in range(1, num_asignaturas + 1):
-        sum_term = " + ".join(f"x{a}_{s}_{h}" for s in range(1, num_salas + 1) for h in range(1, 71))
+        sum_term = " + ".join(f"x{a}_{s}_{h}" for s in range(1, num_salas + 1) for h in range(1, 36))
         restriccion += f"y{a} <= {sum_term};\n"
     return restriccion
 
@@ -49,7 +49,7 @@ def crear_disponibilidad(h_disponibles, num_asignaturas=1, num_salas=1):
         for a in range(1,num_asignaturas+1):
             for s in range(1,num_salas+1):
                 restriccion+=f"x{a}_{s}_{h} <= 1;\n" 
-    for h in range(1,71):
+    for h in range(1,36):
         for a in range(1,num_asignaturas+1):
             for s in range(1,num_salas+1):
                 if h not in h_disponibles:
@@ -59,7 +59,7 @@ def crear_disponibilidad(h_disponibles, num_asignaturas=1, num_salas=1):
 def crear_tope_horario(num_asignaturas=1, num_salas=1):
     restriccion = "/* R6 - Tope de horario */\n"
     for s in range(1, num_salas + 1):
-        for h in range(1, 71):
+        for h in range(1, 36):
             sum_term = " + ".join(f"x{a}_{s}_{h}" for a in range(1, num_asignaturas + 1))
             restriccion += f"{sum_term} <= 1;\n"
     return restriccion
