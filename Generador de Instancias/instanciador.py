@@ -57,7 +57,7 @@ def f_q_alumnos(num_asig):
 
 #Retorna un array con los subindices-a (asignaturas) que tienen 2 bloques
 def dar2bloquesalsesentaycincoporciento(num_asig):
-    return sorted(random.sample(range(1, num_asig+1), k=round(int(num_asig*0.65))))
+    return sorted(random.sample(range(1, num_asig+1), k=(int(round(num_asig*0.65)))))
     
 def f_h_disponibles():
     return sorted(random.sample(range(1, 36), k=35))
