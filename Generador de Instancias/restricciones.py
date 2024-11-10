@@ -10,6 +10,7 @@ def crear_restriccion_interes(q_alumnos, cap_salas, num_asignaturas=1, num_salas
     restriccion = "/* R1 - Capacidad de las salas de clases (Interés) */\n"
     for a in range(1, num_asignaturas + 1):
         for s, capacity in enumerate(cap_salas):
+            s+=1
             sum_expr = ""
             for h in range(1, 71):
                 sum_expr += f"x{a}_{s}_{h}"
@@ -20,7 +21,7 @@ def crear_restriccion_interes(q_alumnos, cap_salas, num_asignaturas=1, num_salas
 def crear_bloques_horarios_consecutivos(prioridad, h_restringidos, cap_salas, asig_bloques, num_asignaturas=1, num_salas=1):
     restriccion = "/* R2 - Bloques horarios consecutivos */\n"
     for a in range(1, num_asignaturas + 1):
-        for h in range(1, len(h_restringidos[a - 1]) + 1):
+        for h in range(2, len(h_restringidos[a - 1]) + 1):
             for s in range(1, num_salas + 1):
                 if a in asig_bloques:
                     sum_expr = f"x{a}_{s}_{h-1}+x{a}_{s}_{h+1}+x{a}_{s}_{h}="
@@ -35,8 +36,7 @@ def crear_asignacion_bloques(prioridad, cap_salas, asig_bloques, num_asignaturas
         for h in range(1, 36):
             for s in range(1, num_salas + 1):
                 sum_term += f"x{a}_{s}_{h} + "
-        sum_term = sum_term[:-3] + " = " + ("2" if a in asig_bloques else "1")
-        sum_term = sum_term+f" y_{a};\n"
+        sum_term = sum_term[:-3] + " = " + ("2;\n" if a in asig_bloques else "1;\n")
         restriccion += sum_term
     return restriccion
 

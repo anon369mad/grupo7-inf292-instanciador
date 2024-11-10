@@ -11,7 +11,7 @@ def guardar_atributos_en_txt(instancia, nombre_archivo="atributos.txt"):
         archivo.write(req.activacion(instancia.prioridad, instancia.cap_salas, instancia.num_asig, instancia.num_salas))
         archivo.write(req.crear_tope_horario(instancia.num_asig, instancia.num_salas))
         archivo.write(req.crear_asignaturas_indispensables(instancia.prioridad, instancia.num_asig))
-
+    
         # Horarios restringidos
         archivo.write("/*Horarios restringidos*/\n")
         for a, horarios in enumerate(instancia.h_restringidos):
@@ -62,6 +62,6 @@ while flag:
 '''
 
 if True:
- instancia=Instancia(40, 1)
+ instancia=Instancia(35, 3)
  guardar_atributos_en_txt(instancia, "InstanciaP.lp")
  print("Archivos con instancias creados")
