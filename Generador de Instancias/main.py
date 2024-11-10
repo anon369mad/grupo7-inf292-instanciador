@@ -62,6 +62,6 @@ while flag:
 '''
 
 if True:
- instancia=Instancia(30, 15)#asig,salas
+ instancia=Instancia(45, 1)#asig,salas
  guardar_atributos_en_txt(instancia, "InstanciaP.lp")
  print("Archivos con instancias creados")

@@ -7,15 +7,11 @@ def crear_funcion_objetivo(prioridad, num_asignaturas=1):
     return f_o[:-1] + ";\n"
 
 def crear_restriccion_interes(q_alumnos, cap_salas, num_asignaturas=1, num_salas=1):
-    restriccion = "/* R1 - Capacidad de las salas de clases (Interés) */\n"
+    restriccion = "/* R1 - Capacidad de las salas de clases */\n"
     for a in range(1, num_asignaturas + 1):
         for s, capacity in enumerate(cap_salas):
-            s+=1
-            sum_expr = ""
-            for h in range(1, 71):
-                sum_expr += f"{q_alumnos[a-1]}*x{a}_{s}_{h}"
-                sum_expr += " + " if h < 70 else f" <= {capacity};\n"
-            restriccion += sum_expr
+            s += 1
+            restriccion += f"{q_alumnos[a-1]} * y{a} <= {capacity}*y{a};\n"
     return restriccion
 
 def crear_bloques_horarios_consecutivos(prioridad, h_restringidos, cap_salas, asig_bloques, num_asignaturas=1, num_salas=1):
